@@ -1,0 +1,30 @@
+<!DOCTYPE html> 
+<html> 
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="{{ STATIC_URL }}/static/css/article.css/">
+        <link rel="icon" href="{{ STATIC_URL }}/static/img/dota.ico/">
+        <title>Архив статей</title> 
+    </head>
+    <body class="archive">
+        <div class="header">
+            <img src="{{ STATIC_URL }}/static/img/logo.png" alt="логотип">  
+        </div>
+        <button class="newar"><a style="text-decoration: none" href="/article/new">Создать статью</a></button>
+
+        <div class="archive">
+            {% for post in posts %}
+            <div class="one-post">
+                <a style="text-decoration: none" href="/article/{{post.id}}">{{ post.title }}</a>
+                    <div class="article-info">
+                        <p class="article-text">{{ post.get_excerpt }}</p>
+                        <div class="article-author">{{ post.author.username }} 
+                        </div>
+                        <div class="article-created-date">{{ post.created_date }}
+                        </div>
+                    </div>  
+            </div>
+            {% endfor %}
+        </div>        
+    </body>
+</html>
